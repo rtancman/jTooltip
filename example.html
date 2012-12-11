@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="jTooltip.js"></script>
+		<style type="text/css">
+			.arrow{
+			    width:0;
+			    height:0;
+			    left: 25px;
+			    border:10px solid transparent;
+			}
+			.tooltip {  
+				display: none;
+				padding: .8em;
+				border: 4px solid #000;
+				background-color: #fff;
+				-webkit-border-radius: 25px;
+				-moz-border-radius: 25px;
+				border-radius: 25px;
+				position: absolute;
+			} 
+			.bottom{
+			    border-top-color:#000;
+			    top: 33px; 
+			    position: relative;
+			}
+			.top{
+			    border-bottom-color:#000;
+			   	position: absolute;
+    			top: -21px;
+			}
+			.container {
+			    width: 50%;
+			    border: 1px solid #ccc;
+			    margin: 10px auto 50px;
+			    padding: 20px;
+			}
+			.container-end{
+				margin-bottom: 600px;
+			}
+			li{
+				list-style: none;
+				width: 150px;
+			}
+			a.close{
+				background: none repeat scroll 0 0 #000000;
+			    color: #FFFFFF;
+			    padding: 8px;
+			    position: absolute;
+			    right: -10px;
+			    text-decoration: none;
+			    top: -17px;
+			    z-index: 1000;			   	
+				-webkit-border-radius: 100px;
+				-moz-border-radius: 100px;
+				border-radius: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			var obj1 = null,
+			obj2 = null,
+			obj3 = null,
+			obj4 = null;
+			$(document).ready(function(){
+				obj1 = new jTooltip({
+					popName: 'item',
+					limitScrollTop: 100,
+					popTopArrow: 10,
+					popTopArrowBottom: 150
+				});	
+				obj1.init('ul#elementsTooltip li');
+
+				obj2 = new jTooltip({
+					popName: 'ex2item',
+					limitScrollTop: 300,
+					popTopArrow: 10,
+					popTopArrowBottom: 150
+				});
+				obj2.init('ul#elementsTooltipEx2 li');
+
+				obj3 = new jTooltip({
+					popName: 'ex3item',
+					limitScrollTop: 750,
+					popTopArrow: 10,
+					popTopArrowBottom: 150
+				});
+				obj3.init('ul#elementsTooltipEx3 li');
+
+				obj4 = new jTooltip({
+					popName: 'ex4item',
+					limitScrollTop: 1000,
+					popTopArrow: 10,
+					popTopArrowBottom: 150
+				});
+				obj4.init('ul#elementsTooltipEx4 li');
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Example 1 jTooltip - text</h1>
+			<hr>
+			<ul id="elementsTooltip">
+				<li data-tooltip-pop="1"><img width="150px" src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg"></li>
+			</ul>
+			<div class="tooltip tooltip-pop-item" id="tooltip-pop-item-1">
+				<p>Test tooltip! xD</p>
+				<div class="arrow top"></div>
+			</div>
+		</div>
+		<div class="container">
+			<h1>Example 2 jTooltip - link</h1>
+			<hr>
+			<ul id="elementsTooltipEx2">
+				<li data-tooltip-pop="1"><img width="150px" src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg"></li>
+			</ul>
+			<div class="tooltip tooltip-pop-ex2item" id="tooltip-pop-ex2item-1">
+				<p><a href="https://github.com/rtancman/jTooltip" target="_blank">Test tooltip! xD</a></p>
+				<div class="arrow top"></div>
+			</div>
+		</div>
+		<div class="container">
+			<h1>Example 3 jTooltip - img</h1>
+			<hr>
+			<ul id="elementsTooltipEx3">
+				<li data-tooltip-pop="1"><img width="150px" src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg"></li>
+			</ul>
+			<div class="tooltip tooltip-pop-ex3item" id="tooltip-pop-ex3item-1">
+				<img src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg">
+				<div class="arrow top"></div>
+			</div>
+		</div>
+		<div class="container container-end">
+			<h1>Example 4 jTooltip - img</h1>
+			<hr>
+			<ul id="elementsTooltipEx4">
+				<li data-tooltip-pop="1"><img width="150px" src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg"></li>
+			</ul>
+			<div class="tooltip tooltip-pop-ex4item" id="tooltip-pop-ex4item-1">
+				<a href="javascript: void(0)" class="tooltip-btn-close-ex4item close" title="close">X</a>
+				<iframe width="420" height="315" src="http://www.youtube.com/embed/99eDWSCQRgk" frameborder="0" allowfullscreen></iframe>
+				<div class="arrow top"></div>
+			</div>
+		</div>
+	</body>
+</html>
