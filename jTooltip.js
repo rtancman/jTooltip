@@ -1,64 +1,67 @@
-var tooltipJCarouseltOptions = {
+var jTooltipOptions = {
   timer : 0,
-  id_collaborator_aux : 0,
-  top_collaborator_aux : 0,
-  left_collaborator_aux : 0,
+  idElement : 0,
+  topElement : 0,
+  leftElement : 0,
   objTooltip : null,
-  popCollaborator : null,
-  popCollaboratorArrow : null,
+  popElement : null,
+  popElementArrow : null,
   scrollTop : null,
   popName : '',
   popTopArrow : 30,
   popTopArrowBottom : 105,
-  limitScrollTop : 345
+  limitScrollTop : 345,
+  listElements : null
 }, target = {};
 
-var TooltipJCarousel = function(options){
+var jTooltip = function(options){
 
-  target = jQuery.extend( tooltipJCarouseltOptions, options );
+  target = jQuery.extend( jTooltipOptions, options );
 
   this.timer = target.timer;
-  this.id_collaborator_aux = target.id_collaborator_aux;
-  this.top_collaborator_aux = target.top_collaborator_aux;
-  this.left_collaborator_aux = target.left_collaborator_aux;
+  this.idElement = target.idElement;
+  this.topElement = target.topElement;
+  this.leftElement = target.leftElement;
   this.objTooltip = target.objTooltip;
-  this.popCollaborator = target.popCollaborator;
-  this.popCollaboratorArrow = target.popCollaboratorArrow;
+  this.popElement = target.popElement;
+  this.popElementArrow = target.popElementArrow;
   this.scrollTop = target.scrollTop;
   this.popName = target.popName;
   this.popTopArrow = target.popTopArrow;
   this.popTopArrowBottom = target.popTopArrowBottom;
   this.limitScrollTop = target.limitScrollTop;
+  this.listElements = target.listElements;
 
   this.init = function(element){
     var objTooltip = this;
     jQuery(element).live('mouseenter', function() {
         var objElement = jQuery(this);
-        objTooltip.id_collaborator_aux = objElement.attr('data-tooltip-pop');
-        if(objTooltip.id_collaborator_aux){
+        objTooltip.idElement = objElement.attr('data-tooltip-pop');
+        objTooltip.listElements = jQuery('.tooltip-pop-'+this.popName);
+        if(objTooltip.idElement){
           objTooltip.timer = setTimeout(function () {
             
-          objTooltip.top_collaborator_aux = parseInt(objElement.offset().top);
-          objTooltip.left_collaborator_aux = parseInt(objElement.offset().left);
+          objTooltip.topElement = parseInt(objElement.offset().top);
+          objTooltip.leftElement = parseInt(objElement.offset().left);
           objTooltip.scrollTop = jQuery(window).scrollTop();
 
-          objTooltip.popCollaborator = jQuery('#tooltip-pop-'+objTooltip.popName+'-'+objTooltip.id_collaborator_aux);
-          objTooltip.popCollaboratorArrow = objTooltip.popCollaborator.find('.extra-info-arrow');
-          objTooltip.popCollaborator.css('left', objTooltip.left_collaborator_aux + 'px');
-          objTooltip.popCollaborator.fadeIn(300);
-          objTooltip.popCollaborator.addClass('active');
-          objTooltip.popCollaborator.removeClass('off');
+          objTooltip.popElement = jQuery('#tooltip-pop-'+objTooltip.popName+'-'+objTooltip.idElement);
+          objTooltip.popElementArrow = objTooltip.popElement.find('.extra-info-arrow');
+          objTooltip.popElement.css('left', objTooltip.leftElement + 'px');
+          objTooltip.popElement.fadeIn(300);
+          objTooltip.popElement.addClass('active');
+          objTooltip.popElement.removeClass('off');
 
           if( objTooltip.scrollTop >= objTooltip.limitScrollTop ){
-            objTooltip.popCollaboratorArrow.removeClass('bottom-arrow');
-            objTooltip.popCollaboratorArrow.addClass('top-arrow');
-            objTooltip.popCollaboratorArrow.attr('src','/img/modules/products/extra-info_top-arrow.png');
-            objTooltip.popCollaborator.css('top', parseInt(objTooltip.top_collaborator_aux + objTooltip.popTopArrowBottom) + 'px');
+            objTooltip.popElementArrow.removeClass('bottom-arrow');
+            objTooltip.popElementArrow.addClass('top-arrow');
+            objTooltip.popElementArrow.attr('src','/img/top-arrow.png');
+            objTooltip.popElement.css('top', parseInt(objTooltip.topElement + objTooltip.popTopArrowBottom) + 'px');
           }else{
-            objTooltip.popCollaboratorArrow.removeClass('top-arrow');
-            objTooltip.popCollaboratorArrow.addClass('bottom-arrow');
-            objTooltip.popCollaboratorArrow.attr('src','/img/modules/products/extra-info_bottom-arrow.png');
-            objTooltip.popCollaborator.css('top', parseInt(objTooltip.top_collaborator_aux - objTooltip.popCollaborator.height() - objTooltip.popTopArrow) + 'px');
+            objTooltip.popElementArrow.removeClass('top-arrow');
+            objTooltip.popElementArrow.addClass('bottom-arrow');
+            objTooltip.popElementArrow.attr('src','/img/bottom-arrow.png');
+            objTooltip.popElement.css('top', parseInt(objTooltip.topElement - objTooltip.popElement.height() - objTooltip.popTopArrow) + 'px');
           }
           
           }, 200);
@@ -66,8 +69,8 @@ var TooltipJCarousel = function(options){
     }).live('mouseleave', function() {
       clearTimeout(objTooltip.timer);
       var auxMouseenter = false;
-      if(objTooltip.popCollaborator){
-        objTooltip.popCollaborator.live('mouseenter mouseleave', function(event) {
+      if(objTooltip.popElement){
+        objTooltip.popElement.live('mouseenter mouseleave', function(event) {
           if(event.type == 'mouseleave'){
             objTooltip.clearListColaborators();
           }else{
@@ -84,11 +87,11 @@ var TooltipJCarousel = function(options){
   };
 
   this.clearListColaborators = function(){
-    jQuery('.tooltip-pop-'+this.popName).fadeOut(300);
-    jQuery('.tooltip-pop-'+this.popName).removeClass('active');
-    jQuery('.tooltip-pop-'+this.popName).addClass('off');
-    jQuery('.tooltip-pop-'+this.popName).css('left','0');
-    jQuery('.tooltip-pop-'+this.popName).css('top','0');
+    objTooltip.listElements.fadeOut(300);
+    objTooltip.listElements.removeClass('active');
+    objTooltip.listElements.addClass('off');
+    objTooltip.listElements.css('left','0');
+    objTooltip.listElements.css('top','0');
   }
 
 
