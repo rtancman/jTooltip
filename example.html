@@ -1,8 +1,55 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script type="text/javascript" src="jTooltip.js"></script>
-		<style type="text/css">
+<head>
+  <title>jTooltip | rtancman</title>
+  <link href="http://en.gravatar.com/avatar/0115e99f9b12e4a630bcba1736967557?s=25&amp;d=mm" rel="shortcut icon">
+  <meta name="description" content="jTooltip"/>
+  <meta name="keywords" content="tooltip"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta property="og:title" content="jTooltip"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="http://rtancman.com.br/simpleWysiwyg"/>
+  <meta property="og:image" content="http://en.gravatar.com/avatar/0115e99f9b12e4a630bcba1736967557?s=25&d=mm"/>
+  <meta property="og:site_name" content="rtancman.com.br"/>
+  <meta property="og:description" content="jTooltip "/>
+  <meta name="twitter:card" value="summary">
+  <meta name="twitter:url" value="http://rtancman.com.br/jTooltip">
+  <meta name="twitter:title" value="jTooltip | rtancman">
+  <meta name="twitter:description" value="jTooltip">
+  <meta name="twitter:image" value="http://en.gravatar.com/avatar/0115e99f9b12e4a630bcba1736967557?s=25&d=mm">
+  <meta property="fb:app_id" content="246280775508572" />
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="jTooltip.js"></script>
+	<style>
+	.ribbon {
+	  background-color: #a00;
+	  overflow: hidden;
+	  /* top left corner */
+	  position: absolute;
+	  right: -3em;
+	  top: 2.5em;
+	  /* 45 deg ccw rotation */
+	  -moz-transform: rotate(45deg);
+	  -webkit-transform: rotate(45deg);
+	  /* shadow */
+	  -moz-box-shadow: 0 0 1em #888;
+	  -webkit-box-shadow: 0 0 1em #888;
+	}
+	.ribbon a {
+	border: 1px solid #faa;
+	  color: #fff;
+	  display: block;
+	  font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+	  margin: 0.05em 0 0.075em 0;
+	  padding: 0.5em 3.5em;
+	  text-align: center;
+	  text-decoration: none;
+	  /* shadow */
+	  text-shadow: 0 0 0.5em #444;
+	}
+
 			.arrow{
 			    width:0;
 			    height:0;
@@ -97,6 +144,22 @@
 		</script>
 	</head>
 	<body>
+		<div class="ribbon">
+		  <a rel="me" href="https://github.com/rtancman/simpleWysiwyg">Fork me on GitHub</a>
+		</div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		
+			<h1>jTooltip</h1><div class="fb-like" data-href="http://rtancman.com.br/simpleWysiwyg" data-send="false" data-layout="button_count" data-width="350" data-show-faces="true" data-font="arial"></div
+			<p>jTooltip is a jQuery plugin for to transform html element to tooltip box. Use this tool in carousels and elements html.</p>
+			<p>Dual licensed under the <a href="https://raw.github.com/rtancman/jTooltip/master/MIT.txt">MIT</a> and <a href="https://raw.github.com/rtancman/jTooltip/master/GPL.txt">GPL</a> licenses.</p>
+			<hr>
 		<div class="container">
 			<h1>Example 1 jTooltip - text</h1>
 			<hr>
@@ -131,7 +194,7 @@
 			</div>
 		</div>
 		<div class="container container-end">
-			<h1>Example 4 jTooltip - img</h1>
+			<h1>Example 4 jTooltip - iframe</h1>
 			<hr>
 			<ul id="elementsTooltipEx4">
 				<li data-tooltip-pop="1"><img width="150px" src="http://img233.imageshack.us/img233/7149/450pxperumachupicchusunxt8.jpg"></li>
